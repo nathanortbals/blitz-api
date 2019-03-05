@@ -1,21 +1,17 @@
 const router = require('express').Router();
-const validation = require('../validation/player');
+const validation = require('../validation/playerStats');
 const msf = require('../middleware/mySportsFeed');
 const asyncWrapper = require('../middleware/asyncWrapper');
 
-router.get('/', validation.getPlayer, asyncWrapper(async function(req, res) {
-  const params = {};
-  if(req.query.id) {
-    params['player'] = req.query.id;
-  }
-  if(req.query.position) {
-    params['position'] = req.query.position;
-  }
+router.get('/', validation.getPlayerStats, asyncWrapper(async function(req, res) {
+  const params = {
+    player: req.query.id
+  };
 
-  const data = await msf('active_players', params);
+  const data = await msf('cumulative_player_stats', params);
 
-  if(data.activeplayers.playerentry) {
-    res.json(data.activeplayers.playerentry);
+  if(data.cumulativeplayerstats.playerstatsentry) {
+    res.json(data.cumulativeplayerstats.playerstatsentry);
   }
   else {
     res.json({});

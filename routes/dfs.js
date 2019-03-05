@@ -1,21 +1,36 @@
 const router = require('express').Router();
 const validation = require('../validation/dfs');
 const msf = require('../middleware/mySportsFeed');
+const asyncWrapper = require('../middleware/asyncWrapper');
 
-router.get('/', validation.getDfs, function(req, res) {
+router.get('/', validation.getDfs, asyncWrapper(async function(req, res) {
   // Set date timestamp to today
-  const date = new Date();
   const params = {
-    date: date.getTime()
+    //date: getCurDate()
+    date: 20181014
   };
 
   if(req.query.position) {
     params['position'] = req.query.position;
   }
 
-  const data = msf('daily_dfs', params);
+  try{
+    const data = await msf('daily_dfs', params);
+    res.json(data);
+  }
+  catch(err) {
+    res.json(err);
+  }
+}));
 
-  res.json(data.dfsEntries);
-});
+function getCurDate() {
+  const now = new Date();
+  const y = now.getFullYear();
+  const m = now.getMonth() + 1;
+  const d = now.getDate();
+  const mm = m < 10 ? '0' + m : m;
+  const dd = d < 10 ? '0' + d : d;
+  return '' + y + mm + dd;
+}
 
 module.exports = router;

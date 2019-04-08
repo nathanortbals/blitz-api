@@ -6,20 +6,24 @@ const asyncWrapper = require('../middleware/asyncWrapper');
 router.get('/', validation.getDfs, asyncWrapper(async function(req, res) {
   // Set date timestamp to today
   const params = {
-    //date: getCurDate()
-    date: 20181014
+    //date: getCurDate(),
+    date: 20181014,
+    dfstype: "draftkings"
   };
 
+  if(req.query.id) {
+    params['player'] = req.query.id;
+  }
   if(req.query.position) {
     params['position'] = req.query.position;
   }
 
-  try{
-    const data = await msf('daily_dfs', params);
-    res.json(data);
-  }
-  catch(err) {
-    res.json(err);
+  const data = await msf('daily_dfs', params);
+
+  if(data.dfsEntries.length > 0) {
+    res.json(data.dfsEntries[0].dfsRows)
+  } else {
+    res.json([]);
   }
 }));
 

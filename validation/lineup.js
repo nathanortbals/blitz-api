@@ -11,7 +11,7 @@ const getLineup = joi.object().keys({
   TE: joi.string().optional(),
   K: joi.string().optional(),
   D: joi.string().optional(),
-  HOLDER: joi.string().optional()
+  H: joi.string().optional()
 });
 
 module.exports = {

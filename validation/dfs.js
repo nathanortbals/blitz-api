@@ -2,7 +2,8 @@ const schemaWrapper = require('./schemaWrapper');
 const joi = require('joi');
 
 const getDfs = joi.object().keys({
-  position: joi.string().optional()
+  position: joi.string().optional(),
+  id: joi.string().optional()
 });
 
 module.exports = {

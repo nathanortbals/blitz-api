@@ -8,10 +8,10 @@ router.get('/', validation.getPlayerStats, asyncWrapper(async function(req, res)
     player: req.query.id
   };
 
-  const data = await msf('cumulative_player_stats', params);
+  const data = await msf('seasonal_player_stats', params);
 
-  if(data.cumulativeplayerstats.playerstatsentry) {
-    res.json(data.cumulativeplayerstats.playerstatsentry);
+  if(data.playerStatsTotals.length > 0) {
+    res.json(data.playerStatsTotals[0]);
   }
   else {
     res.json({});

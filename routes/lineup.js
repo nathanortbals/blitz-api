@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const validation = require('../validation/lineup');
 const getLineup = require('../middleware/lineupSelection');
+const asyncWrapper = require('../middleware/asyncWrapper');
 
-router.get('/', validation.getLineup, function(req, res) {
-  const result = getLineup(
+router.get('/', validation.getLineup, asyncWrapper(async function(req, res) {
+  const result = await getLineup(
     req.query.QB,
     req.query.RB1,
     req.query.RB2,
@@ -13,9 +14,9 @@ router.get('/', validation.getLineup, function(req, res) {
     req.query.TE,
     req.query.K,
     req.query.D,
-    req.query.HOLDER);
+    req.query.H);
 
   res.json(result);
-});
+}));
 
 module.exports = router;

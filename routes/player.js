@@ -5,6 +5,7 @@ const asyncWrapper = require('../middleware/asyncWrapper');
 
 router.get('/', validation.getPlayer, asyncWrapper(async function(req, res) {
   const params = {};
+
   if(req.query.id) {
     params['player'] = req.query.id;
   }
@@ -15,9 +16,8 @@ router.get('/', validation.getPlayer, asyncWrapper(async function(req, res) {
   const data = await msf('players', params);
 
   if(data.players) {
-    res.json(data.players);
-  }
-  else {
+    res.json(data.players)
+  } else {
     res.json([]);
   }
 }));

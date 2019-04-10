@@ -1,49 +1,31 @@
-const msf = require('../middleware/mySportsFeed');
+const dfsQuery = require('./dfsQuery');
 
-async function getLineup(qb, rb1, rb2, rb3, wr1, wr2, te, k, d, h) {
-
-  const result = {};
-
-  const params = {
-    date: 20181014,
-    dfstype: "draftkings",
-  };
-
-  var response;
-
-  params.position = 'qb';
-  response = await msf('daily_dfs', params);
-  result['qb'] = response.dfsEntries[0].dfsRows[0];
-  params.position = 'rb';
-  response = await msf('daily_dfs', params);
-  result['rb1'] = response.dfsEntries[0].dfsRows[0];;
-  params.position = 'rb';
-  response = await msf('daily_dfs', params);
-  result['rb2'] = response.dfsEntries[0].dfsRows[0];;
-  params.position = 'rb';
-  response = await msf('daily_dfs', params);
-  result['rb3'] = response.dfsEntries[0].dfsRows[0];;
-  params.position = 'wr';
-  response = await msf('daily_dfs', params);
-  result['wr1'] = response.dfsEntries[0].dfsRows[0];;
-  params.position = 'wr';
-  response = await msf('daily_dfs', params);
-  result['wr2'] = response.dfsEntries[0].dfsRows[0];;
-  params.position = 'te';
-  response = await msf('daily_dfs', params);
-  result['te'] = response.dfsEntries[0].dfsRows[0];;
-  params.position = 'k';
-  response = await msf('daily_dfs', params);
-  result['k'] = response.dfsEntries[0].dfsRows[0];;
-  params.position = 'd';
-  response = await msf('daily_dfs', params);
-  result['d'] = response.dfsEntries[0].dfsRows[0];;
-  params.position = 'h';
-  response = await msf('daily_dfs', params);
-  result['h'] = response.dfsEntries[0].dfsRows[0];;
-
-
-  return result;
+async function getLineup(qb, rb1, rb2, wr1, wr2, wr3, te, f, d) {
+  Promise.all([
+    dfsQuery('qb', null),
+    dfsQuery('rb', null),
+    dfsQuery('rb', null),
+    dfsQuery('wr', null),
+    dfsQuery('wr', null),
+    dfsQuery('wr', null),
+    dfsQuery('te', null),
+    dfsQuery(null, null),
+    dfsQuery('d', null)
+  ]).then(function(results) {
+    return {
+      qb: results[0][0],
+      rb1: results[1][0],
+      rb2: results[2][1],
+      wr1: results[3][0],
+      wr2: results[4][1],
+      wr3: results[5][1],
+      te: results[6][0],
+      f: results[7][0],
+      d: results[8][0],
+    };
+  }).catch(function(){
+      return {};
+  });
 }
 
 module.exports = getLineup;

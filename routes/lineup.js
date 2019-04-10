@@ -8,13 +8,12 @@ router.get('/', validation.getLineup, asyncWrapper(async function(req, res) {
     req.query.QB,
     req.query.RB1,
     req.query.RB2,
-    req.query.RB3,
     req.query.WR1,
     req.query.WR2,
+    req.query.WR3,
     req.query.TE,
-    req.query.K,
-    req.query.D,
-    req.query.H);
+    req.query.F,
+    req.query.D);
 
   res.json(result);
 }));

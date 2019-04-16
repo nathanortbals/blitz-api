@@ -25,17 +25,12 @@ async function getDfsEntries(position, playerId) {
     }
   }
 
-  const data = await msf('daily_dfs', params);
+  let data = await msf('daily_dfs', params);
+  data = getDfsRows(data);
+  data = filterDefensePositions(data, position);
+  setPositions(data, position);
 
-  if(data.dfsEntries.length === 0 || data.dfsEntries[0].dfsRows.length === 0) {
-    return [];
-  }
-
-  let dfsRows = data.dfsEntries[0].dfsRows;
-  dfsRows = filterDefensePositions(dfsRows, position);
-  setPositions(dfsRows, position);
-
-  return dfsRows;
+  return data;
 }
 
 function getCurDate() {
@@ -46,6 +41,14 @@ function getCurDate() {
   const mm = m < 10 ? '0' + m : m;
   const dd = d < 10 ? '0' + d : d;
   return '' + y + mm + dd;
+}
+
+function getDfsRows(data) {
+  if(data.dfsEntries.length === 0 || data.dfsEntries[0].dfsRows.length === 0) {
+    return [];
+  }
+
+  return data.dfsEntries[0].dfsRows;
 }
 
 function filterDefensePositions(dfsRows, position) {

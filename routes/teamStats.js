@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const validation = require('../validation/playerStats');
+const validation = require('../validation/teamStats');
 const asyncWrapper = require('../middleware/asyncWrapper');
-const playerStatsQuery = require('../middleware/playerStatsQuery');
+const teamStatsQuery = require('../middleware/teamStatsQuery');
 
-router.get('/', validation.getPlayerStats, asyncWrapper(async function(req, res) {
-  let data = await playerStatsQuery(req.query.id);
+router.get('/', validation.getTeamStats, asyncWrapper(async function(req, res) {
+  let data = await teamStatsQuery(req.query.id);
   data = data.stats;
 
   data = {

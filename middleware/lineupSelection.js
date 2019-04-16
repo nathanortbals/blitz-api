@@ -129,6 +129,6 @@ async function getData() {
 }
 
 
-module.exports = getLineup;
+getLineup();
 
 module.exports = getLineup;

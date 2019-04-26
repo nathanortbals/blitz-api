@@ -5,16 +5,17 @@ const asyncWrapper = require('../middleware/asyncWrapper');
 const dfsQuery = require('../middleware/dfsQuery');
 
 router.get('/', validation.getLineup, asyncWrapper(async function(req, res) {
+
     let results = await Promise.all([
-        dfsQuery('QB', null),
-        dfsQuery('RB', null),
-        dfsQuery('RB', null),
-        dfsQuery('WR', null),
-        dfsQuery('WR', null),
-        dfsQuery('WR', null),
-        dfsQuery('TE', null),
-        dfsQuery('F', null),
-        dfsQuery('D', null)
+        getDfsQuery('QB', 'QB', req),
+        getDfsQuery('RB', 'RB1', req),
+        getDfsQuery('RB', 'RB2', req),
+        getDfsQuery('WR', 'WR1', req),
+        getDfsQuery('WR', 'WR2', req),
+        getDfsQuery('WR', 'WR3', req),
+        getDfsQuery('TE', 'TE', req),
+        getDfsQuery('F', 'F', req),
+        getDfsQuery('D', 'D', req)
     ]);
 
     res.json ({
@@ -43,5 +44,14 @@ router.get('/', validation.getLineup, asyncWrapper(async function(req, res) {
     //
     // res.json(results);
 }));
+
+async function getDfsQuery(position, lineupPosition, req) {
+    if(req.query[lineupPosition]) {
+        return await dfsQuery(null, req.query[lineupPosition]);
+    }
+    else {
+        return await dfsQuery(position, null);
+    }
+}
 
 module.exports = router;

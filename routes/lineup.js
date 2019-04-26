@@ -47,7 +47,7 @@ router.get('/', validation.getLineup, asyncWrapper(async function(req, res) {
 
 async function getDfsQuery(position, lineupPosition, req) {
     if(req.query[lineupPosition]) {
-        return await dfsQuery(null, req.query[lineupPosition]);
+        return await dfsQuery(position, req.query[lineupPosition]);
     }
     else {
         return await dfsQuery(position, null);

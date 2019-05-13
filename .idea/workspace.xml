@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9dc89374-828f-4fc1-95de-284a5366aa8b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/routes/lineup.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/lineup.js" afterDir="false" />
-    </list>
+    <list default="true" id="9dc89374-828f-4fc1-95de-284a5366aa8b" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -90,8 +88,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/lineup.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+            <state relative-caret-position="495">
+              <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -325,12 +323,12 @@
       <workItem from="1555339312024" duration="43000" />
       <workItem from="1555364168170" duration="5342000" />
       <workItem from="1556314592769" duration="1410000" />
-      <workItem from="1557676290901" duration="607000" />
+      <workItem from="1557676290901" duration="1356000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45682000" />
+    <option name="totallyTimeSpent" value="46431000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -369,6 +367,30 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/routes/lineup.js</url>
+          <line>32</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/routes/lineup.js</url>
+          <line>20</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/routes/lineup.js</url>
+          <line>8</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/LICENSE">
@@ -570,8 +592,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/lineup.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+        <state relative-caret-position="495">
+          <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
         </state>
       </provider>
     </entry>

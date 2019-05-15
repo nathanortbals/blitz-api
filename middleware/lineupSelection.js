@@ -2,111 +2,218 @@ const dfsQuery = require('./dfsQuery');
 const playerStatsQuery = require('./playerStatsQuery');
 const teamStatsQuery = require('./teamStatsQuery');
 
-//flex can be rb, wr, te, d, or k
+// //   //swap players based on difference between pt/dollar prioritizing higher pt/$
+// //   //repeat process until total salary is less than allowed salary cap
+// //   While (total > cap)
+// //   Holder = Qb
+// //   If(qb_pt_per_dollar - nextQB_pt_per_dollar > rb1_pt_per_dollar - nextRB1_pt_per_dollar)
+// //   If(qb_pt_per_dollar-  nextQB_pt_per_dollar > 0)
+// //   Holder = rb1
+// //   Repeat for all positions
+// // //put holder's next highest pt per dollar into line up
+// //   Swap holder with holder_next_pt_per_dollar
+// //     Recalculate total
+// //   loop
+// //   END
+//
+// }
+//
+
+function loadProjections(data){
+  for (let i = 0; i < data.length; i++){
+    if(data[i].player !== null)
+      data[i].player.projPt = getProjections(data, i);
+  }
+}
+
+function getProjections(data, index){
+  let i = index;
+  let grossPt = 0;
+  try {
+    grossPt += (data[i].stats.stats.rushing.rushAverage * .1);
+  }
+  catch {
+    console.log("Could not access field RUSHING");
+  }
+
+  try {
+    grossPt += (data[i].stats.stats.passing.passAvg * .04);
+    grossPt += (data[i].stats.stats.passing.passCompletions * 1);
+  }
+  catch {
+    console.log("Could not access field PASSING");
+  }
+
+  try {
+    grossPt += (data[i].stats.stats.receiving.recAverage * .1);
+  }
+  catch {
+    console.log("Could not access field RECEIVING");
+  }
+
+  return grossPt;
+}
+
+function findMax(data, pos){
+  let indexes = [];
+  let max = 0;
+  let holderIndex = 0;
+  let holderPos = [];
+
+  if(pos === "flex"){
+    holderPos.push("RB");
+    holderPos.push("WR");
+    holderPos.push("TE");
+  }
+  else
+    holderPos.push(pos);
+
+  for(let i = 0; i < data.length; i++){
+    if(data[i].player !== null) {
+      for (let j = 0; j <= holderPos.length; j++) {
+        if (data[i].position.localeCompare(holderPos[j]) === 0) {
+          indexes.push(i);
+        }
+      }
+    }
+  }
+
+  max = data[indexes[0]].player.projPt;
+
+  for(let i = 1; i < indexes.length; i++){
+    if(data[indexes[i]].player.projPt >= max){
+      max = data[indexes[i]].player.projPt;
+      holderIndex = indexes[i];
+    }
+  }
+
+  holderData = data[holderIndex];
+  data.splice(holderIndex,1);
+  return holderData;
+}
+
+function delGSals(data, sal, pos){
+  let holderPos = [];
+
+  if(pos === "flex"){
+    holderPos.push("RB");
+    holderPos.push("WR");
+    holderPos.push("TE");
+  }
+  else
+    holderPos.push(pos);
+
+  for(let i = 0; i < data.length; i++){
+    if(data[i].player !== null) {
+      for (let j = 0; j <= holderPos.length; j++) {
+        if (data[i].position === holderPos[j]) {
+          if(data[i].salary > sal)
+            data.splice(i, 1);
+        }
+      }
+    }
+  }
+}
+
 async function getLineup() {
-  //Load all players with their projected points, positions, cost, and point per dollar into array. Also load salary cap
-  // let qb = {proPts: 0, pos: '', cost: 0, ptPerDol: proPts / cost};
-  // let rb1 = {proPts: 0, pos: '', cost: 0, ptPerDol: proPts / cost};
-  // let rb2 = {proPts: 0, pos: '', cost: 0, ptPerDol: proPts / cost};
-  // let wr1 = {proPts: 0, pos: '', cost: 0, ptPerDol: proPts / cost};
-  // let wr2 = {proPts: 0, pos: '', cost: 0, ptPerDol: proPts / cost};
-  // let wr3 = {proPts: 0, pos: '', cost: 0, ptPerDol: proPts / cost};
-  // let te = {proPts: 0, pos: '', cost: 0, ptPerDol: proPts / cost};
-  // let d = {proPts: 0, pos: '', cost: 0, ptPerDol: proPts / cost};
-  // let flex = {proPts: 0, pos: '', cost: 0, ptPerDol: proPts / cost};
-  // let holder = {proPts: 0, pos: '', cost: 0, ptPerDol: proPts / cost};
-
-  let total = 0;
-
-  //finds all max points for each positions then removes selected player from array
   const data = await getData();
-
+  let line = [];
+  let holder = 0;
+  let holderPos;
   const json = JSON.stringify(data);
 
-  // qb = Select max(qb_proj_points);
-  // Remove qb from array
-  //
-  // rb1 = Select max(rb_proj_points)
-  // Remove rb1 from array
-  //
-  // rb2= Select max(rb_proj_points)
-  // Remove rb2 from array
-  //
-  // wr1 = Select max(wr_proj_points)
-  // Remove wr1 from array
-  //
-  // wr2= Select max(wr_proj_points)
-  // Remove wr2 from array
-  //
-  // wr3 = select Max(k_proj_points)
-  // Remove wr3 from array
-  //
-  // te = select Max(Te_proj_points)
-  // Remove te from array
-  //
-  // d = select max(d_proj_points)
-  // Remove D from array
-  //
-  // flex = select max(flex_proj_points)
-  // Remove flex from array
+  const cap = 40000;
+  loadProjections(data)
 
-  //take out all players with salaries greater or equal to selected players salaries
-  //for all positions
-//   Remove all players with selected players salary or greater in that position
-//
-//   Total = qb.cost + rb1.cost + rb2.cost + wr1.cost + wr2.cost + wr3.cost + d.cost + flex.cost + te.cost;
-//
-//   //swap players based on difference between pt/dollar prioritizing higher pt/$
-//   //repeat process until total salary is less than allowed salary cap
-//   While (total > cap)
-//   Holder = Qb
-//   If(qb_pt_per_dollar - nextQB_pt_per_dollar > rb1_pt_per_dollar - nextRB1_pt_per_dollar)
-//   If(qb_pt_per_dollar-  nextQB_pt_per_dollar > 0)
-//   Holder = rb1
-//   Repeat for all positions
-// //put holder's next highest pt per dollar into line up
-//   Swap holder with holder_next_pt_per_dollar
-//     Recalculate total
-//   loop
-//   END
+  qb = findMax(data, "QB");
+  line.push(qb);
+  rb1 = findMax(data, "RB");
+  line.push(rb1);
+  rb2 = findMax(data, "RB");
+  line.push(rb2);
+  wr1 = findMax(data, "WR");
+  line.push(wr1);
+  wr2 = findMax(data, "WR");
+  line.push(wr2);
+  wr3 = findMax(data, "WR");
+  line.push(wr3);
+  te = findMax(data, "TE");
+  line.push(te);
+  flex = findMax(data, "flex");
+  line.push(flex);
 
-}
+  let total = qb.salary + rb1.salary + rb2.salary + wr1.salary + wr2.salary + wr3.salary + te.salary + flex.salary;
 
-function getProjections(posPts, defAllowedYrd){
-  // Load player stats into array (max 50 stats) --> yards[]
-  var j=0, total = 0,  avg = 0,  proj = 0;
+  while(total > cap) {
+    delGSals(data, qb.salary, "QB");
+    delGSals(data, rb1.salary, "RB");
+    delGSals(data, rb2.salary, "RB");
+    delGSals(data, wr1.salary, "WR");
+    delGSals(data, wr2.salary, "WR");
+    delGSals(data, wr3.salary, "WR");
+    delGSals(data, te.salary, "TE");
+    delGSals(data, flex.salary, "flex");
 
-  //finding the weighted average yards from the past 50 games
-  while (j < yards.length) {
-    total += (1.25 - .01 * j) * yards[j];
-    j++;
+    if((line[0].player.projPt / line[0].salary) < (line[1].player.projPt / line[1].salary)){
+      holderPos = 0;
+      holder = (line[0].player.projPt / line[0].salary);
+    }
+    else{
+      holderPos = 1;
+      holder = (line[1].player.projPt / line[1].salary);
+    }
+
+    for(let i = 1; i < line.length; i++){
+      if((line[i].player.projPt / line[i].salary) < holder){
+        holderPos = i;
+        holder = (line[i].player.projPt / line[i].salary);
+      }
+    }
+
+    switch(holderPos) {
+      case 0:
+        qb = findMax(data, line[holderPos].position);
+        line[holderPos] = qb;
+        break;
+      case 1:
+        rb1 = findMax(data, line[holderPos].position);
+        line[holderPos] = rb1;
+        break;
+      case 2:
+        rb2 = findMax(data, line[holderPos].position);
+        line[holderPos] = rb2;
+        break;
+      case 3:
+        wr1 = findMax(data, line[holderPos].position);
+        line[holderPos] = wr1;
+        break;
+      case 4:
+        wr2 = findMax(data, line[holderPos].position);
+        line[holderPos] = wr2;
+        break;
+      case 5:
+        wr3 = findMax(data, line[holderPos].position);
+        line[holderPos] = wr3;
+        break;
+      case 6:
+        te = findMax(data, line[holderPos].position);
+        line[holderPos] = te;
+        break;
+      case 7:
+        flex = findMax(data, line[holderPos].position);
+        line[holderPos] = flex;
+        break;
+    }
+
+    total = qb.salary + rb1.salary + rb2.salary + wr1.salary + wr2.salary + wr3.salary + te.salary + flex.salary;
   }
 
-  avg = total / yards.length;
-
-  //here we take the average yards per game plus the defenses average allowed yards divided by 2
-  //then multiply these estimated yards by the position's points per yard
-  proj = (Avg + defAllowedYrd / 2) * posPts;
-
-  return proj;
-}
-
-function loadProjs(){
-  //Load all player names into players[]
-
-  var i = 0;
-
-  while (i < players.length){
-    if(player[i].team.localecompare(player[i].awayTeamAbbr) == 0)
-      getProjections(players[i].position, players[i].homeTeamAbbr);
-    else
-      getProjections(players[i].position, players[i].awayTeamAbbr);
-  }
+  return JSON.stringify(line);
 }
 
 async function getData() {
   const dfsEntries = await dfsQuery(null, null);
-  if(dfsEntries.length == 0) {
+  if(dfsEntries.length === 0) {
     return null
   }
 
@@ -127,8 +234,5 @@ async function getData() {
 
   return dfsEntries
 }
-
-
-getLineup();
 
 module.exports = getLineup;

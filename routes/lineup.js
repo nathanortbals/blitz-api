@@ -30,6 +30,8 @@ router.get('/', validation.getLineup, asyncWrapper(async function(req, res) {
       d: results[8][0],
     };
 
+    console.log(result);
+
     res.json(result);
 }));
 

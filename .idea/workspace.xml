@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9dc89374-828f-4fc1-95de-284a5366aa8b" name="Default Changelist" comment="" />
+    <list default="true" id="9dc89374-828f-4fc1-95de-284a5366aa8b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/middleware/lineupSelection.js" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/lineupSelection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/lineup.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/lineup.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -44,25 +47,25 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="8452" />
+          <entry key="js" value="8474" />
           <entry key="json" value="28" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JSON" value="28" />
-          <entry key="JavaScript" value="8452" />
+          <entry key="JavaScript" value="8474" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/middleware/lineupSelection.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="15" selection-start-line="23" selection-start-column="15" selection-end-line="23" selection-end-column="15" />
+            <state relative-caret-position="578">
+              <caret line="235" column="1" selection-start-line="235" selection-start-column="1" selection-end-line="235" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -85,11 +88,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/lineup.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
+            <state relative-caret-position="403">
+              <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -184,13 +187,13 @@
         <option value="$PROJECT_DIR$/middleware/teamStatsQuery.js" />
         <option value="$PROJECT_DIR$/routes/dfs.js" />
         <option value="$PROJECT_DIR$/validation/lineup.js" />
-        <option value="$PROJECT_DIR$/middleware/lineupSelection.js" />
         <option value="$PROJECT_DIR$/validation/teamStats.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/routes/teamStats.js" />
         <option value="$PROJECT_DIR$/routes/playerStats.js" />
         <option value="$PROJECT_DIR$/middleware/dfsQuery.js" />
         <option value="$PROJECT_DIR$/routes/lineup.js" />
+        <option value="$PROJECT_DIR$/middleware/lineupSelection.js" />
       </list>
     </option>
   </component>
@@ -282,7 +285,7 @@
     <configuration name="Start" type="NodeJSConfigurationType" factoryName="Node.js" path-to-js-file="app.js" working-dir="$PROJECT_DIR$">
       <envs>
         <env name="PORT" value="3000" />
-        <env name="MY_SPORTS_FEED_API_KEY" value="058f2d30-e4f1-4698-8128-ae8dd5" />
+        <env name="MY_SPORTS_FEED_API_KEY" value="48ab3b3f-1765-4241-a96f-50d426" />
       </envs>
       <method v="2" />
     </configuration>
@@ -323,12 +326,12 @@
       <workItem from="1555339312024" duration="43000" />
       <workItem from="1555364168170" duration="5342000" />
       <workItem from="1556314592769" duration="1410000" />
-      <workItem from="1557676290901" duration="1356000" />
+      <workItem from="1557676290901" duration="2746000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46431000" />
+    <option name="totallyTimeSpent" value="47821000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -343,19 +346,19 @@
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28933093" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28933093" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.29591838" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.33163264" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.33163264" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32959184" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.23979592" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.23979592" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -367,30 +370,6 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/routes/lineup.js</url>
-          <line>32</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/routes/lineup.js</url>
-          <line>20</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/routes/lineup.js</url>
-          <line>8</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/LICENSE">
@@ -527,13 +506,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/middleware/lineupSelection.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="15" selection-start-line="23" selection-start-column="15" selection-end-line="23" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/middleware/dfsQuery.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="915">
@@ -545,13 +517,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
           <caret line="29" column="3" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/dfs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -576,13 +541,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="2" selection-start-line="21" selection-start-column="2" selection-end-line="21" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/validation/playerStats.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -590,10 +548,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/routes/dfs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/lineup.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
+        <state relative-caret-position="403">
+          <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="2" selection-start-line="21" selection-start-column="2" selection-end-line="21" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/middleware/lineupSelection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="235" column="1" selection-start-line="235" selection-start-column="1" selection-end-line="235" selection-end-column="1" />
         </state>
       </provider>
     </entry>
